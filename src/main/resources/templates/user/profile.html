@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'Profile |')}">
+<head>
+<meta charset="UTF-8" />
+<title>Profile</title>
+</head>
+<body>
+	<div id="content">
+
+		<div class="container mt-5 card-sh">
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<h1 class="fs-3 text-center mt-5">My Profile</h1>
+
+					<th:block th:if="${session.successMsg}">
+						<p class="text-success fw-bold text-center fs-4">[[${session.successMsg}]]</p>
+						<th:block th:text="${@removeSessionImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+					<th:block th:if="${session.errorMsg}">
+						<p class="text-danger fw-bold text-center fs-4">[[${session.errorMsg}]]</p>
+						<th:block th:text="${@removeSessionImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+
+					<hr>
+
+					<div class="text-center">
+						<img alt="" th:src="@{'../img/profile_img/'+${user.profileImage}}"
+							class="border p-2"
+							style="width: 180px; height: 170px; border-radius: 50%;">
+					</div>
+					<div class="col-md-6 offset-md-4">
+						<table class="table table-borderless">
+							<tbody>
+								<form th:action="@{'/user/update_profile'}" method="post"
+									enctype="multipart/form-data">
+									<tr>
+										<th scope="row">Profile Picture</th>
+										<td>:</td>
+										<td><input type="file" name="file" class="form-control"
+											value="Becoder"> <input type="hidden"
+											th:value="${user.id}" name="id" /></td>
+									</tr>
+									<tr>
+										<th scope="row">Name</th>
+										<td>:</td>
+										<td><input type="text" name="name" class="form-control"
+											th:value="${user.name}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Mobile Number</th>
+										<td>:</td>
+										<td><input type="text" name="mobileNumber"
+											class="form-control" th:value="${user.mobileNumber}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Email</th>
+										<td>:</td>
+										<td><input type="email" name="" class="form-control"
+											readonly th:value="${user.email}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Address</th>
+										<td>:</td>
+										<td><input type="text" name="address"
+											class="form-control" th:value="${user.address}"></td>
+									</tr>
+									<tr>
+										<th scope="row">State</th>
+										<td>:</td>
+										<td><input type="text" name="state" class="form-control"
+											th:value="${user.state}"></td>
+									</tr>
+									<tr>
+										<th scope="row">City</th>
+										<td>:</td>
+										<td><input type="text" name="city" class="form-control"
+											th:value="${user.city}"></td>
+									</tr>
+									<tr>
+										<th scope="row">Pincode</th>
+										<td>:</td>
+										<td><input type="number" name="pincode"
+											class="form-control" th:value="${user.pincode}"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="text-center">
+											<button class="btn btn-danger">Update</button>
+										</td>
+									</tr>
+								</form>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+				<hr>
+				<div class="col-md-10 offset-md-1 mt-1 ">
+					<div class="row">
+						<h3 class="text-center fs-3">Change Password</h3>
+						<div class="col-md-6 offset-md-3">
+							<form th:action="@{'/user/change_password'}" method="post">
+								<table class="table table-borderless">
+									<tbody>
+										<tr>
+											<th scope="row">Current Password</th>
+											<td><input type="password" name="currentPassword"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<th scope="row">New Password</th>
+											<td><input type="password" name="newPassword"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<th scope="row">Confirm Password</th>
+											<td><input type="password" name="confirmPassword"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td colspan="2" class="text-center">
+												<button type="submit" class="btn btn-danger">Update</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

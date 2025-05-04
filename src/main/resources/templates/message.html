@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'404 |')}">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<div class="" id="content">
+		<div class="container mt-5 p-5">
+			<div class="row">
+				<div class="col-md-6 p-5 text-center offset-md-3">
+					<h3>[[${msg}]]</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

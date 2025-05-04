@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'Order Success')}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div id="content">
+
+		<div class="container mt-5">
+
+			<div class="row">
+
+				<div class="col-md-6 p-5 offset-md-3 text-center">
+
+					<div class="mb-3 row">
+						<h1 class="fw-bold text-center ">
+							Order SuccessFully Placed <i
+								class="fa-solid fa-circle-check text-success"></i>
+						</h1>
+						<hr>
+						<p class="fs-4">Product will be Delivered within 7 Working
+							Days</p>
+						<div class="text-center">
+							<a href="/" class="btn btn-danger">Home</a> <a
+								th:href="@{'/user/user_orders'}" class="btn btn-danger">My
+								Orders</a>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

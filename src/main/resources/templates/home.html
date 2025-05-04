@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'')}">
+<head>
+<meta charset="UTF-8">
+<title>Urban Drip</title>
+
+</head>
+<body>
+	<div id="content">
+
+		<!-- banner -->
+		<div id="carouselExampleSlidesOnly" class="carousel slide"
+			data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img th:src="@{'/img/B1.jpg'}" class="d-block w-100" alt=""
+						height="700px">
+				</div>
+				<div class="carousel-item">
+					<img th:src="@{'/img/B2.jpg'}" class="d-block w-100" alt=""
+						height="700px">
+				</div>
+				<div class="carousel-item">
+					<img th:src="@{'/img/B3.jpg'}" class="d-block w-100" alt=""
+						height="700px">
+				</div>
+			</div>
+		</div>
+
+		<!-- category -->
+		<div class="container">
+			<div class="row">
+				<p class="text-center fs-4">Category</p>
+
+				<div class="col-md-2" th:each="category : ${categories}">
+					<div
+						class="card rounded-circle shadow p-3 mb-5 bg-body-tertiary rounded">
+						<div class="card-body text-center">
+							<a th:href="@{'/products?category='+${category.name}}"
+								class="text-decoration-none text-black "> <img
+								th:src="@{'/img/category_img/'+${category.imageName}}"
+								width="65%" height="140px" />
+								<p>[[${category.name}]]</p></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Latest products -->
+		<div class="container-fluid bg-light p-3">
+			<div class="row">
+				<p class="text-center fs-4">Latest Products</p>
+
+				<div class="col-md-3" th:each="product : ${products}">
+					<div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+						<div class="card-body text-center">
+							<a th:href="@{'/product_view/'+${product.id}}"
+								class="text-decoration-none text-black"> <img
+								th:src="@{'/img/product_img/'+${product.image}}" width="65%"
+								height="140px" />
+								<p class="text-center">[[${product.name}]]</p></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

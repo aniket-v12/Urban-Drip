@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'Admin |')}">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<div id="content">
+
+		<div class="container-fluid mt-3">
+			<div class="card card-sh">
+				<div class="card-header text-center">
+					<p class="fs-4">Admins</p>
+
+					<th:block th:if="${session.successMsg}">
+						<p class="text-success fw-bold fs-3">[[${session.successMsg}]]</p>
+						<th:block th:text="${@removeSessionImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+					<th:block th:if="${session.errorMsg}">
+						<p class="text-danger fw-bold fs-3">[[${session.errorMsg}]]</p>
+						<th:block th:text="${@removeSessionImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+
+				</div>
+				<div class="card-body">
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">No.</th>
+								<th scope="col">Profile</th>
+								<th scope="col">Name</th>
+								<th scope="col">Email</th>
+								<th scope="col">Phone no.</th>
+								<th scope="col">Address</th>
+								<th scope="col">Status</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="admin,c : ${admins}">
+								<th scope="row">[[${c.count}]]</th>
+								<td><img
+									th:src="@{'/img/profile_img/'+${admin.profileImage}}"
+									width="50px" height="50px" class="rounded" /></td>
+								<td>[[${admin.name}]]</td>
+								<td>[[${admin.email}]]</td>
+								<td>[[${admin.mobileNumber}]]</td>
+								<td>[[${admin.address +' , '+ admin.state +' , '+
+									admin.city +' , '+ admin.pincode}]]</td>
+								<td>[[${admin.isEnable}]]</td>
+
+								<td><a
+									th:href="@{'/admin/update_stat?status=true&id='+${admin.id}}"
+									class="btn btn-primary"> Active</a> <a
+									th:href="@{'/admin/update_stat?status=false&id='+${admin.id}}"
+									class="btn btn-danger"> Inactive</a></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
